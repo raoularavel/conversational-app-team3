@@ -9,13 +9,15 @@ export default function ListAssignment() {
   return (
     <Stack spacing={2} sx={{ width: '100%', height: '100%' }}>
       {assignments && assignments.map(
-        (assignment) => <AssignmentItem key={assignment.id} {...assignment} />,
+        (assignment) => <AssignmentItem key={assignment.id} {...assignment} status="passed" />,
       )}
 
-      <AssignmentItem />
-      <AssignmentItem />
-      <AssignmentItem />
-      <AssignmentItem />
+      <AssignmentItem status="passed" />
+      <AssignmentItem status="failed" />
+      <AssignmentItem status="failed" />
+      <AssignmentItem status="passed" />
+      <AssignmentItem status="passed" />
+      <AssignmentItem status="passed" />
     </Stack>
   );
 }

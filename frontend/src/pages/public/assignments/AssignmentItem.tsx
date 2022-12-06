@@ -6,7 +6,7 @@ import theme from '../../../theme/theme';
 import CourseTitle from './CourseTitle';
 import courseImage from '../../../assets/images/Group.png';
 import AssignmentDescription from './AssignmentDescription';
-import { AssingmentType } from '../../../interfaces/AssingmentType';
+import { AssignmentType } from '../../../interfaces/AssignmentType';
 
 const SlyledPaper = styled(Paper)({
   width: '100%',
@@ -19,8 +19,8 @@ const SlyledPaper = styled(Paper)({
   },
 });
 
-function AssignmentItem(props : Partial<AssingmentType>) {
-  const { title } = props;
+function AssignmentItem(props : Partial<AssignmentType> & { status:string }) {
+  const { title, status } = props;
   return (
     <SlyledPaper>
       <Grid container columns={4} sx={{ width: '100%' }}>
@@ -37,8 +37,23 @@ function AssignmentItem(props : Partial<AssingmentType>) {
         <Grid item xs={4} sm={4} lg={1}>
           <Stack spacing={2}>
             <Button>View Details</Button>
-            <Button>Retake exam</Button>
-            <Button color="error">Exam Failed</Button>
+            {status === 'failed' && (
+            <>
+              <Button>Retake exam</Button>
+              <Button color="error">
+                Exam
+                {' '}
+                {status}
+              </Button>
+            </>
+            )}
+            {status === 'passed' && (
+              <Button color="success">
+                Exam
+                {' '}
+                {status}
+              </Button>
+            )}
           </Stack>
         </Grid>
       </Grid>
